@@ -201,7 +201,7 @@ async function installNode(config: Config, version: string): Promise<string> {
   const loaderText = `downloading Node.js ${version}`
   loader.start(loaderText);
   try {
-    await fetchNode(fetch, version, versionDir, { cafsDir });
+    await fetchNode(fetch, version, versionDir, { cafsDir, nodeMirrorBaseUrl: config.get("nodeMirrorBaseUrl") });
   } catch (err) {
     loader.fail('Could not install Node.js, using the system Node.js instead');
     return undefined;
